@@ -27,12 +27,6 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    -name: Build Dependencies for fast-lio
-      run: |
-          sudo apt update && sudo apt upgrade
-          sudo apt-get install python3-pcl pcl-tools
-          sudo apt install libeigen3-dev
-
    
 
     
