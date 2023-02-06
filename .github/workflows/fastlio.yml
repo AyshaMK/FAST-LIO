@@ -2,9 +2,9 @@ name: Fast-LiO in ROS Noetic Workflow
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -18,9 +18,14 @@ jobs:
       uses: ros-tooling/setup-ros@0.5.0
       with:
         required-ros-distributions: "noetic"
-      
-      
-      
+
+    - name: Build and Push Docker Image
+      uses: mr-smithers-excellent/docker-build-push@v4
+      with:
+        image: aysha/demo-slam
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
    
 
