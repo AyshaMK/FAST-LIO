@@ -2,9 +2,9 @@ name: Fast-LiO in ROS Noetic Workflow
 
 on:
   push:
-    branches: fastlio
+    branches: [ master ]
   pull_request:
-    branches: fastlio
+    branches: [ master ]
 
 jobs:
   build:
