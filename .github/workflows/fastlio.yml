@@ -18,10 +18,11 @@ jobs:
       uses: ros-tooling/setup-ros@0.5.0
       with:
         required-ros-distributions: "noetic"
-      run: "source /opt/ros/noetic/setup.bash && rosnode --help"
+      
 
     - name: Build Dependencies for fast-lio
       run: |
+          source /opt/ros/noetic/setup.bash && rosnode --help
           sudo apt update && sudo apt upgrade
           sudo apt-get install python3-pcl pcl-tools
           sudo apt install libeigen3-dev
