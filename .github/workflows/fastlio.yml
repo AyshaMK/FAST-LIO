@@ -19,12 +19,6 @@ jobs:
       with:
         required-ros-distributions: "noetic"
 
-    - name: Build FAST-LIO dependencies
-      run: |
-        sudo apt update && sudo apt upgrade
-        sudo apt-get install python3-pcl pcl-tools
-        sudo apt install libeigen3-dev
-
     - name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
