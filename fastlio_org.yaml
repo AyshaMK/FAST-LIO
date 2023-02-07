@@ -1,0 +1,42 @@
+name: Fast-LiO in ROS Noetic Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    #- name: Setup ROS environment
+    #  uses: ros-tooling/setup-ros@0.5.0
+    #  with:
+    #    required-ros-distributions: "noetic"
+
+    - uses: mr-smithers-excellent/docker-build-push@v5
+      name: Build & push Docker image
+      with:
+        image: mkaysha/lidar-slam
+        tags: v1, latest
+        registry: docker.io
+        dockerfile: Dockerfile.ci
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+
+
+
+
+
+
+
+
+          
+

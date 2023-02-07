@@ -1,42 +1,36 @@
-name: Fast-LiO in ROS Noetic Workflow
+name: Docker Image CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}  
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 jobs:
+
   build:
-    runs-on: ubuntu-20.04
+
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    #- name: Setup ROS environment
-    #  uses: ros-tooling/setup-ros@0.5.0
-    #  with:
-    #    required-ros-distributions: "noetic"
-
-    - uses: mr-smithers-excellent/docker-build-push@v5
-      name: Build & push Docker image
-      with:
-        image: mkaysha/lidar-slam
-        tags: v1, latest
-        registry: docker.io
-        dockerfile: Dockerfile.ci
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
-
-
-
-
-
-
-
-
-
-          
-
+    - name: Check out code
+      uses: actions/checkout@v3  
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with: 
+        username: ${{secrets.DOCKER_USERNAME}}
+        password: ${{secrets.DOCKERHUB_TOKEN}}
+    - name: Build the Docker images
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USERNAME}}/fastlio:$(date +%s)
+    - name: Set up Buildx
+      uses: docker/setup-buildx-action@v1
+    - name: Build and push
+      uses: docker/build-push-action@v4
+      with: 
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: ${{secrets.DOCKER_USERNAME}}/fastlio:latest
