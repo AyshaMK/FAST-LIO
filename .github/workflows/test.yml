@@ -22,5 +22,4 @@ jobs:
     - name: Build FAST-LIO dependencies
       run: |
         sudo apt update && sudo apt upgrade
-        sudo apt-get install python3-pcl pcl-tools
-        sudo apt install libeigen3-dev
+        sudo apt-get install -y git cmake libgoogle-glog-dev libgflags-dev libatlas-base-dev libeigen3-dev libsuitesparse-dev wget
