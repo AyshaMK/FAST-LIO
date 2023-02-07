@@ -17,8 +17,8 @@ RUN apt-get update && \
 RUN add-apt-repository ppa:borglab/gtsam-release-4.0 -y
 RUN apt-get update && \
     apt-get install -y libgtsam-dev libgtsam-unstable-dev
-COPY FAST_LIO /catkin_ws/src && \
-     livox_ros_driver /catkin_ws/src
+COPY FAST_LIO /catkin_ws/src
+COPY livox_ros_driver /catkin_ws/src
 RUN cd /catkin_ws && \
     . /opt/ros/${ROS_DISTRO}/setup.sh && \
     rosdep update && \
