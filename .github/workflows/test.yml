@@ -31,3 +31,4 @@ jobs:
         make -j2
         make test
         make install
+        sudo apt-get install -y libboost-all-dev python3-catkin-tools
