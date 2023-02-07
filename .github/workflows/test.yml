@@ -19,14 +19,8 @@ jobs:
       with:
         required-ros-distributions: "noetic"
 
-    - name: Build dependencies for fastlio
+    - name: Build FAST-LIO dependencies
       run: |
-          apt-get update
-          apt-get install -y git cmake libgoogle-glog-dev libgflags-dev libatlas-base-dev libeigen3-dev libsuitesparse-dev wget
-          wget http://ceres-solver.org/ceres-solver-2.1.0.tar.gz && tar zxf ceres-solver-2.1.0.tar.gz
-          mkdir ceres-bin
-          cd ceres-bin
-          cmake ../ceres-solver-2.1.0
-          make -j2
-          make test
-          make install
+        sudo apt update && sudo apt upgrade
+        sudo apt-get install python3-pcl pcl-tools
+        sudo apt install libeigen3-dev
