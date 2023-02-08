@@ -34,7 +34,6 @@ jobs:
         sudo apt-get install -y libboost-all-dev python3-catkin-tools
         sudo apt-get update
         sudo apt-get install -y software-properties-common
-        rm -rf /var/lib/apt/lists/*
         sudo add-apt-repository ppa:borglab/gtsam-release-4.0 -y
         sudo apt-get update
         sudo apt-get install -y libgtsam-dev libgtsam-unstable-dev
