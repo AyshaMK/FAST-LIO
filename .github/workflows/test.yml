@@ -40,6 +40,7 @@ jobs:
 
     - name: Build FAST-LIO in workspace
       run: |
+        mkdir -p /catkin_ws/src
         cp -r FAST_LIO /catkin_ws/src/FAST_LIO
         cp -r livox_ros_driver /catkin_ws/src/livox_ros_driver
         cd /catkin_ws
