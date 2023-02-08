@@ -32,4 +32,20 @@ jobs:
         make test
         sudo make install
         sudo apt-get install -y libboost-all-dev python3-catkin-tools
-        
+        sudo apt-get update
+        sudo apt-get install -y software-properties-common
+        rm -rf /var/lib/apt/lists/*
+        sudo add-apt-repository ppa:borglab/gtsam-release-4.0 -y
+        sudo apt-get update
+        sudo apt-get install -y libgtsam-dev libgtsam-unstable-dev
+
+    - name: Build FAST-LIO in workspace
+      run: |
+        COPY FAST_LIO /catkin_ws/src/FAST_LIO
+        COPY livox_ros_driver /catkin_ws/src/livox_ros_driver
+        cd /catkin_ws
+        . /opt/ros/${ROS_DISTRO}/setup.sh
+        rosdep update
+        rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y
+        catkin config --install
+        catkin build
