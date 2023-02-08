@@ -41,7 +41,7 @@ jobs:
     - name: Build FAST-LIO in workspace
       run: |
         sudo mkdir -p catkin_ws/src
-        cd /catkin_ws/src
+        cd catkin_ws/src
         sudo cp -r FAST_LIO /FAST_LIO
         sudo cp -r livox_ros_driver /livox_ros_driver
         cd /catkin_ws
