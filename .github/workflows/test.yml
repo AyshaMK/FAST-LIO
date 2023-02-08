@@ -40,8 +40,8 @@ jobs:
 
     - name: Build FAST-LIO in workspace
       run: |
-        COPY FAST_LIO /catkin_ws/src/FAST_LIO
-        COPY livox_ros_driver /catkin_ws/src/livox_ros_driver
+        cp -r FAST_LIO /catkin_ws/src/FAST_LIO
+        cp -r livox_ros_driver /catkin_ws/src/livox_ros_driver
         cd /catkin_ws
         . /opt/ros/${ROS_DISTRO}/setup.sh
         rosdep update
