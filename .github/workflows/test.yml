@@ -30,5 +30,6 @@ jobs:
         cmake ../ceres-solver-2.1.0
         make -j2
         make test
-        make install
+        sudo make install
         sudo apt-get install -y libboost-all-dev python3-catkin-tools
+        
